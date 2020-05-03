@@ -76,7 +76,7 @@ public class AdvertisementMain implements Commands {
             String loginStr = scanner.nextLine();
             String[] loginArr = loginStr.split(",");
             User user = dataStorage.getUser(loginArr[0]);
-            if (user != null && user.getPhoneNumber().equals(loginArr[1])) {
+            if (user != null && user.getPassword().equals(loginArr[1])) {
                 currentUser = user;
                 loginSuccess();
             } else {
