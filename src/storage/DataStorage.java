@@ -3,6 +3,7 @@ package storage;
 import model.Category;
 import model.Item;
 import model.User;
+import util.FileUtil;
 
 import java.util.*;
 
@@ -15,11 +16,13 @@ public class DataStorage {
 
     public void add(User user) {
         userMap.put(user.getPhoneNumber(), user);
+        FileUtil.serializeUserMap(userMap);
     }
 
     public void add(Item item) {
         item.setId(itemId++);
         items.add(item);
+        FileUtil.serializeItemList(items);
     }
 
     public User getUser(String phoneNumber) {
@@ -88,12 +91,23 @@ public class DataStorage {
                 iterator.remove();
             }
         }
+        FileUtil.serializeItemList(items);
 //        items.removeIf(item -> item.getUser().equals(user));
     }
 
     public void deleteItemsById(long id) {
         items.remove(getItemById(id));
+        FileUtil.serializeItemList(items);
+
     }
 
 
+    public void initData() {
+        items = FileUtil.deserializeItemList();
+        userMap = FileUtil.deserializeUserMap();
+        if (items != null && !items.isEmpty()) {
+            Item item = items.get(items.size() - 1);
+            itemId = item.getId() + 1;
+        }
+    }
 }

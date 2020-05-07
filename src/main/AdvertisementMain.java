@@ -18,7 +18,7 @@ public class AdvertisementMain implements Commands {
 
     public static void main(String[] args) {
         //init data
-        dataStorage.add(new User("poxos","poxosyan",22,Gender.MALE,"321321","321321"));
+        dataStorage.initData();
 
         boolean isRun = true;
         while (isRun) {
