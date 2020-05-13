@@ -81,8 +81,8 @@ public class AdvertisementMain implements Commands {
                 user.setPassword(passwordStr);
                 System.out.println(user);
                 dataStorage.add(user);
-                System.out.println("Import was success!");
             }
+            System.out.println("Import was success!");
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error while importing users");
